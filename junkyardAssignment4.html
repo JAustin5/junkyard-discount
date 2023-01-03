@@ -1,0 +1,68 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+
+var initialAmount, custAge, online, member;
+var initialAmount, discount, subtotal, salesTaxAmount, grandTotal;
+
+//Constant:
+var	lgPurchaseCutoff = 1000;
+var	lgPurchaseDiscRate = .15;
+var	onlineOrderDiscRate = .10;
+var	clubMemDiscRate = .05;
+var	salesTax = .08;
+var	ageCutoff = 70;
+var	ageSalesTaxRate = .01;
+var discRate = 0;	
+	
+//Input:
+initialAmount = prompt("What is the initial amount?" , "");
+
+//Conversion:
+initialAmount = parseInt(initialAmount);
+custAge = prompt("How old are you?" , "");
+
+//Calculations/logic:
+if (initialAmount > lgPurchaseCutoff)
+{//start lg purchase
+	discRate = lgPurchaseDiscRate;
+}//stop lg purchase
+else
+{//start not lg purchase 
+online = prompt("Did you order online? yes or no" , "");		
+		if (online == "yes")
+{//start online
+	discRate = onlineOrderDiscRate;
+}//stop online
+else 
+{//start not online
+member = prompt("Are you a club member? yes or no" , "");
+ if (member == "yes")
+{//start member
+	discRate = clubMemDiscRate;
+	}//stop member
+}//stop not online
+}//stop not lg purchase
+	
+if (custAge > ageCutoff)
+{//start age sales
+	salesTaxRate = ageSalesTaxRate
+}//stop age sales
+else
+{//start sales
+	salesTaxRate = salesTax
+}//stop sales
+
+discount = initialAmount * discRate;
+subtotal = initialAmount - discount;
+salesTaxAmount = subtotal * salesTaxRate;
+grandTotal = subtotal + salesTaxAmount;
+
+//Output:
+document.write("The initial amount: $" + initialAmount.toFixed(2));
+document.write("<br>The total discount: $" + discount.toFixed(2));
+document.write("<br>The subtotal: $" + subtotal.toFixed(2));
+document.write("<br>The sales tax amount: $" + salesTaxAmount.toFixed(2));
+document.write("<br>The grand total: $" + grandTotal.toFixed(2));
+
+//-->
+</script>
